@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d20">
+  <title>QuizVerse — Learn. Play. Level Up.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="QuizVerse home"><span class="brand-mark">Q</span><span>Quiz<span class="brand-accent">Verse</span></span></a>
+      <div class="profile-mini">
+        <div class="avatar" id="miniAvatar">S</div>
+        <div><strong id="miniName">Learner</strong><small>Quiz explorer</small></div>
+      </div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-page="leaderboard"><span>♛</span> Leaderboard</button>
+        <button class="nav-item" data-page="profile"><span>◎</span> My Profile</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="streak-card"><span>🔥</span><div><strong id="streakValue">0 day streak</strong><small>Keep your learning alive!</small></div></div>
+        <button class="nav-item" id="themeBtn"><span>☼</span> Toggle theme</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow" id="dateLabel">YOUR LEARNING SPACE</p><h1 id="pageTitle">Ready to level up?</h1></div>
+        <button class="profile-chip" data-page="profile"><span class="avatar small" id="topAvatar">S</span><span id="topName">Learner</span><span>⌄</span></button>
+      </header>
+
+      <section class="page active" id="homePage">
+        <div class="hero">
+          <div class="hero-copy"><span class="pill">✦ YOUR KNOWLEDGE, YOUR POWER</span><h2>Learn something.<br><span>Prove everything.</span></h2><p>Challenge yourself with quick quizzes, collect achievements and watch your knowledge grow.</p><button class="primary-btn" id="exploreBtn">Explore quizzes <span>→</span></button></div>
+          <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-trophy">🏆</div><div class="float-tag tag-one">+ XP ✨</div><div class="float-tag tag-two">LEVEL UP ↑</div></div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon purple">◈</span><div><small>Total quizzes</small><strong id="homeTotal">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon pink">✦</span><div><small>Average accuracy</small><strong id="homeAccuracy">0%</strong></div></article>
+          <article class="stat-card"><span class="stat-icon yellow">⚡</span><div><small>Total XP</small><strong id="homeXP">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon green">♛</span><div><small>Badges earned</small><strong id="homeBadges">0</strong></div></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">PICK YOUR CHALLENGE</p><h2>Explore categories</h2></div><span class="muted">Choose a topic to begin</span></div>
+        <div class="category-grid" id="categoryGrid"></div>
+        <div class="section-heading difficulty-heading"><div><p class="eyebrow">SET YOUR PACE</p><h2>Choose difficulty</h2></div></div>
+        <div class="difficulty-grid">
+          <button class="difficulty-card selected" data-difficulty="Easy"><span>🌱</span><strong>Easy</strong><small>Warm up & learn</small></button>
+          <button class="difficulty-card" data-difficulty="Medium"><span>🔥</span><strong>Medium</strong><small>Test your skills</small></button>
+          <button class="difficulty-card" data-difficulty="Hard"><span>🚀</span><strong>Hard</strong><small>Expert challenge</small></button>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR COLLECTION</p><h2>Achievements</h2></div><button class="text-btn" data-page="profile">View all →</button></div>
+        <div class="badge-preview" id="homeBadgesList"></div>
+      </section>
+
+      <section class="page" id="dashboardPage">
+        <div class="section-heading"><div><p class="eyebrow">YOUR PROGRESS</p><h2>Learning dashboard</h2><p class="muted">A little progress every day adds up.</p></div></div>
+        <div class="stats-grid dashboard-stats">
+          <article class="stat-card"><span class="stat-icon purple">◈</span><div><small>Quizzes completed</small><strong id="dashTotal">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon pink">◎</span><div><small>Best accuracy</small><strong id="dashBest">0%</strong></div></article>
+          <article class="stat-card"><span class="stat-icon yellow">⚡</span><div><small>XP collected</small><strong id="dashXP">0</strong></div></article>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><h3>Recent attempts</h3><p class="muted">Your latest quiz results</p></div><button class="text-btn" id="clearHistoryBtn">Clear history</button></div><div id="historyList" class="history-list"></div></div>
+      </section>
+
+      <section class="page" id="leaderboardPage">
+        <div class="section-heading"><div><p class="eyebrow">A LITTLE FRIENDLY COMPETITION</p><h2>Leaderboard</h2><p class="muted">Top scores saved on this browser.</p></div></div>
+        <div class="leaderboard-banner"><span>🏆</span><div><strong>Every quiz makes you stronger.</strong><p>Keep practising to climb the leaderboard!</p></div></div>
+        <div class="panel"><div class="panel-heading"><h3>Top learners</h3><span class="muted">By total XP</span></div><div id="leaderboardList"></div></div>
+        <p class="tiny-note">This is a local leaderboard. It only includes profiles and scores saved in this browser.</p>
+      </section>
+
+      <section class="page" id="profilePage">
+        <div class="section-heading"><div><p class="eyebrow">THIS IS YOUR SPACE</p><h2>My profile</h2></div></div>
+        <div class="profile-panel">
+          <div class="profile-avatar-large" id="profileAvatar">S</div>
+          <div class="profile-edit"><label for="usernameInput">Display name</label><div class="edit-row"><input id="usernameInput" maxlength="22" placeholder="Enter your name"><button class="primary-btn compact" id="saveProfileBtn">Save</button></div><p class="muted">Your name appears in your quiz results and local leaderboard.</p></div>
+        </div>
+        <div class="stats-grid"><article class="stat-card"><span class="stat-icon purple">◈</span><div><small>Quizzes</small><strong id="profileTotal">0</strong></div></article><article class="stat-card"><span class="stat-icon yellow">⚡</span><div><small>Total XP</small><strong id="profileXP">0</strong></div></article><article class="stat-card"><span class="stat-icon green">♛</span><div><small>Badges</small><strong id="profileBadges">0</strong></div></article></div>
+        <div class="panel"><div class="panel-heading"><h3>All achievements</h3></div><div class="badge-grid" id="allBadges"></div></div>
+      </section>
+
+      <section class="page" id="quizPage">
+        <div class="quiz-topline"><button class="back-btn" id="quitQuizBtn">← Exit quiz</button><span class="quiz-category-label" id="quizCategoryLabel">PYTHON · EASY</span></div>
+        <div class="quiz-progress-wrap"><div class="progress-meta"><span id="questionCounter">Question 1 of 10</span><span id="progressPercent">10%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
+        <div class="quiz-layout">
+          <div class="quiz-main panel">
+            <div class="question-meta"><span class="question-tag" id="questionTag">QUESTION 01</span><span class="timer" id="timer">◷ 20s</span></div>
+            <h2 id="questionText">Question goes here</h2>
+            <div class="options-list" id="optionsList"></div>
+            <div class="quiz-controls"><button class="secondary-btn" id="prevBtn">← Previous</button><button class="primary-btn" id="nextBtn">Next question →</button></div>
+          </div>
+          <aside class="quiz-side panel"><h3>Question map</h3><p class="muted">Tap a number to jump.</p><div class="question-map" id="questionMap"></div><div class="map-legend"><span><i class="legend-dot answered"></i> Answered</span><span><i class="legend-dot current"></i> Current</span></div><button class="finish-btn" id="finishBtn">Finish quiz ✓</button></aside>
+        </div>
+      </section>
+
+      <section class="page" id="resultPage">
+        <div class="result-hero panel"><div class="result-confetti">🎉</div><p class="eyebrow">QUIZ COMPLETED</p><h2 id="resultTitle">Amazing work!</h2><p class="muted" id="resultMessage">You made progress today.</p><div class="score-ring" id="scoreRing"><div><strong id="scoreValue">0%</strong><small>ACCURACY</small></div></div><div class="result-stats"><div><strong id="correctValue">0</strong><small>Correct</small></div><div><strong id="wrongValue">0</strong><small>Incorrect</small></div><div><strong id="skippedValue">0</strong><small>Skipped</small></div><div><strong id="xpValue">0</strong><small>XP earned</small></div></div><div class="earned-badge" id="earnedBadge"></div><div class="result-actions"><button class="primary-btn" id="retryBtn">Try again ↻</button><button class="secondary-btn" id="homeBtn">Back to home</button></div></div>
+        <div class="panel review-panel"><div class="panel-heading"><div><h3>Answer review</h3><p class="muted">Learn from every answer.</p></div></div><div id="reviewList"></div></div>
+      </section>
+      <footer>Made with <span>♥</span> for curious minds · QuizVerse</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
